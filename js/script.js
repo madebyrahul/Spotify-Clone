@@ -38,14 +38,14 @@ async function getSongs(folder){
     for (const song of songs) {
          songUL.innerHTML += `<li data-file ="${song}"> 
                               
-                                <img class="invert" src="img/music.svg" alt="music">
+                                <img class="invert" src="images/music.svg" alt="music">
                                 <div class="info">
                                     <div>${song.replaceAll("%20", " ").replace(".mp3", "")}</div>
                                 </div>
                               
                             <div class="playnow">
                                 <span>Play Now</span>
-                                <img class="invert" src="img/play.svg" alt="play">
+                                <img class="invert" src="images/play.svg" alt="play">
                             </div>
                          </li>` ;
     }
@@ -133,10 +133,10 @@ async function main() {
          if(currentSong.paused){
             currentSong.play()
             console.log( document.querySelector("#play").src)
-            document.querySelector("#play").src = "img/pause.svg"
+            document.querySelector("#play").src = "images/pause.svg"
          }else{
             currentSong.pause()
-            document.querySelector("#play").src = "img/play.svg"
+            document.querySelector("#play").src = "images/play.svg"
          }
      })
 
