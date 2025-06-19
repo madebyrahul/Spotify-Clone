@@ -19,7 +19,7 @@
 
 async function getSongs(folder){
     currFolder = folder;
-    let a = await fetch(`/${folder}/`);
+    let a = await fetch(`songs/${folder}/`);
     let response = await a.text();
     let div = document.createElement("div");
     div.innerHTML = response;
@@ -65,18 +65,18 @@ async function getSongs(folder){
 
 const playMusic = (track , pause = false)=>{
 //   let audio = new Audio("/Spotify/songs/" + track);
-   currentSong.src = `/${currFolder}/` + track ; 
+   currentSong.src = `songs/${currFolder}/` + track ; 
    if(!pause){
       currentSong.play();
       console.log(  document.querySelector("#play").src)
-      document.querySelector("#play").src = "img/pause.svg";
+      document.querySelector("#play").src = "images/pause.svg";
    }
    document.querySelector(".songinfo").innerHTML = track.replaceAll("%20", " ").replace(".mp3", "");
    document.querySelector(".songtime").innerHTML = "00:00/00:00";
 }
 
 async function displayAlbums() {
-    let a = await fetch(`/songs/`);
+    let a = await fetch(`songs`);
     let response = await a.text();
     let div = document.createElement("div");
     div.innerHTML = response;
