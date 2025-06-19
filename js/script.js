@@ -142,25 +142,36 @@ async function main() {
     })
    
     // event listener to previous and next
-    previous.addEventListener("click", () =>{
-          currentSong.pause()
-          let index = songs.indexOf(currentSong.src.split("/").slice(-1)[0])
-          console.log(songs , index)
-          if((index-1) >= 0){
-              playMusic(songs[index-1])
-          }
-    })
+previous.addEventListener("click", () => {
+    currentSong.pause();
 
-    next.addEventListener("click", () =>{
-          currentSong.pause()
-          let index = songs.indexOf(currentSong.src.split("/").slice(-1)[0])
-          console.log(next)
-          console.log(songs , index)
-          if((index+1) < songs.length){
-              playMusic(songs[index+1])
-          }
-         
-    })
+    let currentSrc = decodeURIComponent(currentSong.src);
+    let filename = currentSrc.split("/").slice(-2).join("/"); // e.g. "karanAujla/Softly.mp3"
+    let index = songs.findIndex(song => song.endsWith(filename));
+
+    console.log("Songs:", songs);
+    console.log("Current index:", index);
+
+    if (index > 0) {
+        playMusic(songs[index - 1]);
+    }
+});
+
+next.addEventListener("click", () => {
+    currentSong.pause();
+
+    let currentSrc = decodeURIComponent(currentSong.src);
+    let filename = currentSrc.split("/").slice(-2).join("/"); // e.g. "karanAujla/Softly.mp3"
+    let index = songs.findIndex(song => song.endsWith(filename));
+
+    console.log("Songs:", songs);
+    console.log("Current index:", index);
+
+    if (index < songs.length - 1) {
+        playMusic(songs[index + 1]);
+    }
+});
+
 
     // event listen to volume
     document.querySelector(".range").getElementsByTagName("input")[0].addEventListener("change", (e)=>{
