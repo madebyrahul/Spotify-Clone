@@ -145,12 +145,11 @@ async function main() {
 previous.addEventListener("click", () => {
     currentSong.pause();
 
-    let currentSrc = decodeURIComponent(currentSong.src);
-    let filename = currentSrc.split("/").slice(-2).join("/"); // e.g. "karanAujla/Softly.mp3"
-    let index = songs.findIndex(song => song.endsWith(filename));
+    let currentPath = currentSong.src;
+    let currentFile = currentPath.substring(currentPath.lastIndexOf("songs/")); // Extract from "songs/..."
 
-    console.log("Songs:", songs);
-    console.log("Current index:", index);
+    let index = songs.findIndex(song => song === currentFile);
+    console.log("Prev button index:", index, currentFile);
 
     if (index > 0) {
         playMusic(songs[index - 1]);
@@ -160,17 +159,17 @@ previous.addEventListener("click", () => {
 next.addEventListener("click", () => {
     currentSong.pause();
 
-    let currentSrc = decodeURIComponent(currentSong.src);
-    let filename = currentSrc.split("/").slice(-2).join("/"); // e.g. "karanAujla/Softly.mp3"
-    let index = songs.findIndex(song => song.endsWith(filename));
+    let currentPath = currentSong.src;
+    let currentFile = currentPath.substring(currentPath.lastIndexOf("songs/")); // Extract from "songs/..."
 
-    console.log("Songs:", songs);
-    console.log("Current index:", index);
+    let index = songs.findIndex(song => song === currentFile);
+    console.log("Next button index:", index, currentFile);
 
     if (index < songs.length - 1) {
         playMusic(songs[index + 1]);
     }
 });
+
 
 
     // event listen to volume
